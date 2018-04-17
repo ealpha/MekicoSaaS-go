@@ -1,0 +1,1240 @@
+<html>
+<head>
+<title>Schema for database 'mekico_saas'</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf8">
+<style type="text/css">
+<!--
+.toptext {font-family: verdana; color: #000000; font-size: 20px; font-weight: 600; width:550;  background-color:#999999; }
+.normal {  font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; font-weight: normal; color: #000000}
+.fieldheader {font-family: verdana; color: #000000; font-size: 12px; font-weight: 600; width:550;  background-color:#c0c0c0; }
+.fieldcolumn {font-family: verdana; color: #000000; font-size: 10px; font-weight: 600; width:550;  background-color:#ffffff; }
+.header {background-color: #ECE9D8;}
+.headtext {font-family: verdana; color: #000000; font-size: 12; font-weight: 600; width:550;  background-color:#999999; }
+BR.page {page-break-after: always}
+//-->
+</style>
+</head>
+<body bgcolor='#ffffff' topmargin="0">
+<table width="100%" border="0" cellspacing="0" cellpadding="5">
+<tr>
+<td class="toptext"><p align="center">mekico_saas</td>
+</tr>
+</table>
+<a name="header">&nbsp</a><ul>
+	<li><a href="#resource"><p class="normal">resource</a></li>
+	<li><a href="#tenant"><p class="normal">tenant</a></li>
+	<li><a href="#tenant_role"><p class="normal">tenant_role</a></li>
+	<li><a href="#tenant_role_resource"><p class="normal">tenant_role_resource</a></li>
+	<li><a href="#tenant_user"><p class="normal">tenant_user</a></li>
+	<li><a href="#tenant_user_role"><p class="normal">tenant_user_role</a></li>
+</ul>
+<br class=page>
+<p><a name='resource'>&nbsp</a>
+<table width="100%" border="0" cellspacing="0" cellpadding="3">
+<tr>
+	<td class="headtext" width="30%" align="left" valign="top">resource</td>
+	<td>&nbsp</td>
+<tr>
+</table>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="3">
+<tr>
+	<td class="fieldheader" width="100%" align="left" valign="top">Fields</td>
+</tr>
+</table>
+<table width="100%" cellspacing="0" cellapdding="2" border="1">
+<tr>
+	<td align="center" valign="top" class="fieldcolumn">Field</td>
+	<td align="center" valign="top" class="fieldcolumn">Type</td>
+	<td align="center" valign="top" class="fieldcolumn">Collation</td>
+	<td align="center" valign="top" class="fieldcolumn">Null</td>
+	<td align="center" valign="top" class="fieldcolumn">Key</td>
+	<td align="center" valign="top" class="fieldcolumn">Default</td>
+	<td align="center" valign="top" class="fieldcolumn">Extra</td>
+	<td align="center" valign="top" class="fieldcolumn">Privileges</td>
+	<td align="center" valign="top" class="fieldcolumn">Comment</td>
+</tr>
+<tr>
+	<td align="left" valign="top"><p class="normal">id</td>
+	<td align="left" valign="top"><p class="normal">int(11)</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">NO</td>
+	<td align="left" valign="top"><p class="normal">PRI</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">auto_increment</td>
+	<td align="left" valign="top"><p class="normal">select,insert,update,references</td>
+	<td align="left" valign="top"><p class="normal">资源ID</td>
+</tr>
+<tr>
+	<td align="left" valign="top"><p class="normal">parent_id</td>
+	<td align="left" valign="top"><p class="normal">int(11)</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">NO</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">0</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">select,insert,update,references</td>
+	<td align="left" valign="top"><p class="normal">上级资源ID，0为顶级</td>
+</tr>
+<tr>
+	<td align="left" valign="top"><p class="normal">resource_name</td>
+	<td align="left" valign="top"><p class="normal">varchar(50)</td>
+	<td align="left" valign="top"><p class="normal">utf8_unicode_ci</td>
+	<td align="left" valign="top"><p class="normal">NO</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">select,insert,update,references</td>
+	<td align="left" valign="top"><p class="normal">权限名称</td>
+</tr>
+<tr>
+	<td align="left" valign="top"><p class="normal">resource_type</td>
+	<td align="left" valign="top"><p class="normal">tinyint(1)</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">YES</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">1</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">select,insert,update,references</td>
+	<td align="left" valign="top"><p class="normal">资源类型，1:URL地址;2:按钮;</td>
+</tr>
+<tr>
+	<td align="left" valign="top"><p class="normal">resource_url</td>
+	<td align="left" valign="top"><p class="normal">varchar(255)</td>
+	<td align="left" valign="top"><p class="normal">utf8_unicode_ci</td>
+	<td align="left" valign="top"><p class="normal">YES</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">select,insert,update,references</td>
+	<td align="left" valign="top"><p class="normal">url地址</td>
+</tr>
+<tr>
+	<td align="left" valign="top"><p class="normal">resource_method</td>
+	<td align="left" valign="top"><p class="normal">enum('GET','POST','PUT','HEAD','DELETE','OPTIONS','TRACE','CONNECT')</td>
+	<td align="left" valign="top"><p class="normal">utf8_unicode_ci</td>
+	<td align="left" valign="top"><p class="normal">YES</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">GET</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">select,insert,update,references</td>
+	<td align="left" valign="top"><p class="normal">url上发生的方法</td>
+</tr>
+<tr>
+	<td align="left" valign="top"><p class="normal">resource_icon</td>
+	<td align="left" valign="top"><p class="normal">varbinary(255)</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">YES</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">select,insert,update,references</td>
+	<td align="left" valign="top"><p class="normal">icon图标</td>
+</tr>
+<tr>
+	<td align="left" valign="top"><p class="normal">sort_level</td>
+	<td align="left" valign="top"><p class="normal">int(1)</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">NO</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">999</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">select,insert,update,references</td>
+	<td align="left" valign="top"><p class="normal">排序，越小越前</td>
+</tr>
+<tr>
+	<td align="left" valign="top"><p class="normal">is_show</td>
+	<td align="left" valign="top"><p class="normal">tinyint(1)</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">NO</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">0</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">select,insert,update,references</td>
+	<td align="left" valign="top"><p class="normal">是否显示，0:隐藏，1:显示</td>
+</tr>
+<tr>
+	<td align="left" valign="top"><p class="normal">status</td>
+	<td align="left" valign="top"><p class="normal">tinyint(1)</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">YES</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">1</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">select,insert,update,references</td>
+	<td align="left" valign="top"><p class="normal">有效状态，1:有效;0:禁用</td>
+</tr>
+<tr>
+	<td align="left" valign="top"><p class="normal">create_user_id</td>
+	<td align="left" valign="top"><p class="normal">int(11)</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">YES</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">select,insert,update,references</td>
+	<td align="left" valign="top"><p class="normal">创建账号ID</td>
+</tr>
+<tr>
+	<td align="left" valign="top"><p class="normal">create_time</td>
+	<td align="left" valign="top"><p class="normal">datetime</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">YES</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">select,insert,update,references</td>
+	<td align="left" valign="top"><p class="normal">创建时间</td>
+</tr>
+<tr>
+	<td align="left" valign="top"><p class="normal">change_last_user_id</td>
+	<td align="left" valign="top"><p class="normal">datetime</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">YES</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">select,insert,update,references</td>
+	<td align="left" valign="top"><p class="normal">最后修改账号ID</td>
+</tr>
+<tr>
+	<td align="left" valign="top"><p class="normal">change_last_time</td>
+	<td align="left" valign="top"><p class="normal">datetime</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">YES</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">select,insert,update,references</td>
+	<td align="left" valign="top"><p class="normal">最后修改时间</td>
+</tr>
+</table>
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="3">
+<tr>
+	<td class="fieldheader" width="100%" align="left" valign="top">Indexes</td>
+</tr>
+</table>
+<table width="100%" cellspacing="0" cellapdding="2" border="1">
+<tr>
+	<td align="left" valign="top" class="fieldcolumn">Table</td>
+	<td align="left" valign="top" class="fieldcolumn">Non<br>unique</td>
+	<td align="left" valign="top" class="fieldcolumn">Key<br>name</td>
+	<td align="left" valign="top" class="fieldcolumn">Seq<br>in<br>index</td>
+	<td align="left" valign="top" class="fieldcolumn">Column<br>name</td>
+	<td align="left" valign="top" class="fieldcolumn">Collation</td>
+	<td align="left" valign="top" class="fieldcolumn">Cardinality</td>
+	<td align="left" valign="top" class="fieldcolumn">Sub<br>part</td>
+	<td align="left" valign="top" class="fieldcolumn">Packed</td>
+	<td align="left" valign="top" class="fieldcolumn">Null</td>
+	<td align="left" valign="top" class="fieldcolumn">Index<br>type</td>
+	<td align="left" valign="top" class="fieldcolumn">Comment</td>
+	<td align="left" valign="top" class="fieldcolumn">Index<br>comment</td>
+</tr>
+<tr>
+	<td align="left" valign="top"><p class="normal">resource</td>
+	<td align="left" valign="top"><p class="normal">0</td>
+	<td align="left" valign="top"><p class="normal">PRIMARY</td>
+	<td align="left" valign="top"><p class="normal">1</td>
+	<td align="left" valign="top"><p class="normal">id</td>
+	<td align="left" valign="top"><p class="normal">A</td>
+	<td align="left" valign="top"><p class="normal">0</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">BTREE</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+</tr>
+</table>
+
+
+<a href="#header"><p class="normal">Back</a><br class=page>
+<p><a name='tenant'>&nbsp</a>
+<table width="100%" border="0" cellspacing="0" cellpadding="3">
+<tr>
+	<td class="headtext" width="30%" align="left" valign="top">tenant</td>
+	<td>&nbsp</td>
+<tr>
+</table>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="3">
+<tr>
+	<td class="fieldheader" width="100%" align="left" valign="top">Fields</td>
+</tr>
+</table>
+<table width="100%" cellspacing="0" cellapdding="2" border="1">
+<tr>
+	<td align="center" valign="top" class="fieldcolumn">Field</td>
+	<td align="center" valign="top" class="fieldcolumn">Type</td>
+	<td align="center" valign="top" class="fieldcolumn">Collation</td>
+	<td align="center" valign="top" class="fieldcolumn">Null</td>
+	<td align="center" valign="top" class="fieldcolumn">Key</td>
+	<td align="center" valign="top" class="fieldcolumn">Default</td>
+	<td align="center" valign="top" class="fieldcolumn">Extra</td>
+	<td align="center" valign="top" class="fieldcolumn">Privileges</td>
+	<td align="center" valign="top" class="fieldcolumn">Comment</td>
+</tr>
+<tr>
+	<td align="left" valign="top"><p class="normal">id</td>
+	<td align="left" valign="top"><p class="normal">int(11)</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">NO</td>
+	<td align="left" valign="top"><p class="normal">PRI</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">auto_increment</td>
+	<td align="left" valign="top"><p class="normal">select,insert,update,references</td>
+	<td align="left" valign="top"><p class="normal">租户编号</td>
+</tr>
+<tr>
+	<td align="left" valign="top"><p class="normal">tenant_name</td>
+	<td align="left" valign="top"><p class="normal">varchar(20)</td>
+	<td align="left" valign="top"><p class="normal">utf8_general_ci</td>
+	<td align="left" valign="top"><p class="normal">YES</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">select,insert,update,references</td>
+	<td align="left" valign="top"><p class="normal">租户名</td>
+</tr>
+<tr>
+	<td align="left" valign="top"><p class="normal">status</td>
+	<td align="left" valign="top"><p class="normal">tinyint(1)</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">YES</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">1</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">select,insert,update,references</td>
+	<td align="left" valign="top"><p class="normal">租户有效状态，1:有效;2:禁用</td>
+</tr>
+<tr>
+	<td align="left" valign="top"><p class="normal">create_user_id</td>
+	<td align="left" valign="top"><p class="normal">int(11)</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">YES</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">select,insert,update,references</td>
+	<td align="left" valign="top"><p class="normal">创建账号ID</td>
+</tr>
+<tr>
+	<td align="left" valign="top"><p class="normal">create_time</td>
+	<td align="left" valign="top"><p class="normal">datetime</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">YES</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">select,insert,update,references</td>
+	<td align="left" valign="top"><p class="normal">创建时间</td>
+</tr>
+<tr>
+	<td align="left" valign="top"><p class="normal">change_last_user_id</td>
+	<td align="left" valign="top"><p class="normal">datetime</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">YES</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">select,insert,update,references</td>
+	<td align="left" valign="top"><p class="normal">最后修改账号ID</td>
+</tr>
+<tr>
+	<td align="left" valign="top"><p class="normal">change_last_time</td>
+	<td align="left" valign="top"><p class="normal">datetime</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">YES</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">select,insert,update,references</td>
+	<td align="left" valign="top"><p class="normal">最后修改时间</td>
+</tr>
+</table>
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="3">
+<tr>
+	<td class="fieldheader" width="100%" align="left" valign="top">Indexes</td>
+</tr>
+</table>
+<table width="100%" cellspacing="0" cellapdding="2" border="1">
+<tr>
+	<td align="left" valign="top" class="fieldcolumn">Table</td>
+	<td align="left" valign="top" class="fieldcolumn">Non<br>unique</td>
+	<td align="left" valign="top" class="fieldcolumn">Key<br>name</td>
+	<td align="left" valign="top" class="fieldcolumn">Seq<br>in<br>index</td>
+	<td align="left" valign="top" class="fieldcolumn">Column<br>name</td>
+	<td align="left" valign="top" class="fieldcolumn">Collation</td>
+	<td align="left" valign="top" class="fieldcolumn">Cardinality</td>
+	<td align="left" valign="top" class="fieldcolumn">Sub<br>part</td>
+	<td align="left" valign="top" class="fieldcolumn">Packed</td>
+	<td align="left" valign="top" class="fieldcolumn">Null</td>
+	<td align="left" valign="top" class="fieldcolumn">Index<br>type</td>
+	<td align="left" valign="top" class="fieldcolumn">Comment</td>
+	<td align="left" valign="top" class="fieldcolumn">Index<br>comment</td>
+</tr>
+<tr>
+	<td align="left" valign="top"><p class="normal">tenant</td>
+	<td align="left" valign="top"><p class="normal">0</td>
+	<td align="left" valign="top"><p class="normal">PRIMARY</td>
+	<td align="left" valign="top"><p class="normal">1</td>
+	<td align="left" valign="top"><p class="normal">id</td>
+	<td align="left" valign="top"><p class="normal">A</td>
+	<td align="left" valign="top"><p class="normal">0</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">BTREE</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+</tr>
+<tr>
+	<td align="left" valign="top"><p class="normal">tenant</td>
+	<td align="left" valign="top"><p class="normal">0</td>
+	<td align="left" valign="top"><p class="normal">idx_tenant_id</td>
+	<td align="left" valign="top"><p class="normal">1</td>
+	<td align="left" valign="top"><p class="normal">id</td>
+	<td align="left" valign="top"><p class="normal">A</td>
+	<td align="left" valign="top"><p class="normal">0</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">BTREE</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+</tr>
+</table>
+
+
+<a href="#header"><p class="normal">Back</a><br class=page>
+<p><a name='tenant_role'>&nbsp</a>
+<table width="100%" border="0" cellspacing="0" cellpadding="3">
+<tr>
+	<td class="headtext" width="30%" align="left" valign="top">tenant_role</td>
+	<td>&nbsp</td>
+<tr>
+</table>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="3">
+<tr>
+	<td class="fieldheader" width="100%" align="left" valign="top">Fields</td>
+</tr>
+</table>
+<table width="100%" cellspacing="0" cellapdding="2" border="1">
+<tr>
+	<td align="center" valign="top" class="fieldcolumn">Field</td>
+	<td align="center" valign="top" class="fieldcolumn">Type</td>
+	<td align="center" valign="top" class="fieldcolumn">Collation</td>
+	<td align="center" valign="top" class="fieldcolumn">Null</td>
+	<td align="center" valign="top" class="fieldcolumn">Key</td>
+	<td align="center" valign="top" class="fieldcolumn">Default</td>
+	<td align="center" valign="top" class="fieldcolumn">Extra</td>
+	<td align="center" valign="top" class="fieldcolumn">Privileges</td>
+	<td align="center" valign="top" class="fieldcolumn">Comment</td>
+</tr>
+<tr>
+	<td align="left" valign="top"><p class="normal">id</td>
+	<td align="left" valign="top"><p class="normal">int(11)</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">NO</td>
+	<td align="left" valign="top"><p class="normal">PRI</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">auto_increment</td>
+	<td align="left" valign="top"><p class="normal">select,insert,update,references</td>
+	<td align="left" valign="top"><p class="normal">主键ID</td>
+</tr>
+<tr>
+	<td align="left" valign="top"><p class="normal">tenant_id</td>
+	<td align="left" valign="top"><p class="normal">int(11)</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">YES</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">select,insert,update,references</td>
+	<td align="left" valign="top"><p class="normal">租户</td>
+</tr>
+<tr>
+	<td align="left" valign="top"><p class="normal">role_name</td>
+	<td align="left" valign="top"><p class="normal">varchar(32)</td>
+	<td align="left" valign="top"><p class="normal">utf8_general_ci</td>
+	<td align="left" valign="top"><p class="normal">NO</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">0</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">select,insert,update,references</td>
+	<td align="left" valign="top"><p class="normal">角色名称</td>
+</tr>
+<tr>
+	<td align="left" valign="top"><p class="normal">remark</td>
+	<td align="left" valign="top"><p class="normal">varchar(255)</td>
+	<td align="left" valign="top"><p class="normal">utf8_general_ci</td>
+	<td align="left" valign="top"><p class="normal">NO</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">0</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">select,insert,update,references</td>
+	<td align="left" valign="top"><p class="normal">备注</td>
+</tr>
+<tr>
+	<td align="left" valign="top"><p class="normal">status</td>
+	<td align="left" valign="top"><p class="normal">tinyint(1)</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">YES</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">1</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">select,insert,update,references</td>
+	<td align="left" valign="top"><p class="normal">有效状态，1:有效;0:禁用</td>
+</tr>
+<tr>
+	<td align="left" valign="top"><p class="normal">create_user_id</td>
+	<td align="left" valign="top"><p class="normal">int(11)</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">YES</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">select,insert,update,references</td>
+	<td align="left" valign="top"><p class="normal">创建账号ID</td>
+</tr>
+<tr>
+	<td align="left" valign="top"><p class="normal">create_time</td>
+	<td align="left" valign="top"><p class="normal">datetime</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">YES</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">select,insert,update,references</td>
+	<td align="left" valign="top"><p class="normal">创建时间</td>
+</tr>
+<tr>
+	<td align="left" valign="top"><p class="normal">change_last_user_id</td>
+	<td align="left" valign="top"><p class="normal">datetime</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">YES</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">select,insert,update,references</td>
+	<td align="left" valign="top"><p class="normal">最后修改账号ID</td>
+</tr>
+<tr>
+	<td align="left" valign="top"><p class="normal">change_last_time</td>
+	<td align="left" valign="top"><p class="normal">datetime</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">YES</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">select,insert,update,references</td>
+	<td align="left" valign="top"><p class="normal">最后修改时间</td>
+</tr>
+</table>
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="3">
+<tr>
+	<td class="fieldheader" width="100%" align="left" valign="top">Indexes</td>
+</tr>
+</table>
+<table width="100%" cellspacing="0" cellapdding="2" border="1">
+<tr>
+	<td align="left" valign="top" class="fieldcolumn">Table</td>
+	<td align="left" valign="top" class="fieldcolumn">Non<br>unique</td>
+	<td align="left" valign="top" class="fieldcolumn">Key<br>name</td>
+	<td align="left" valign="top" class="fieldcolumn">Seq<br>in<br>index</td>
+	<td align="left" valign="top" class="fieldcolumn">Column<br>name</td>
+	<td align="left" valign="top" class="fieldcolumn">Collation</td>
+	<td align="left" valign="top" class="fieldcolumn">Cardinality</td>
+	<td align="left" valign="top" class="fieldcolumn">Sub<br>part</td>
+	<td align="left" valign="top" class="fieldcolumn">Packed</td>
+	<td align="left" valign="top" class="fieldcolumn">Null</td>
+	<td align="left" valign="top" class="fieldcolumn">Index<br>type</td>
+	<td align="left" valign="top" class="fieldcolumn">Comment</td>
+	<td align="left" valign="top" class="fieldcolumn">Index<br>comment</td>
+</tr>
+<tr>
+	<td align="left" valign="top"><p class="normal">tenant_role</td>
+	<td align="left" valign="top"><p class="normal">0</td>
+	<td align="left" valign="top"><p class="normal">PRIMARY</td>
+	<td align="left" valign="top"><p class="normal">1</td>
+	<td align="left" valign="top"><p class="normal">id</td>
+	<td align="left" valign="top"><p class="normal">A</td>
+	<td align="left" valign="top"><p class="normal">0</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">BTREE</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+</tr>
+</table>
+
+
+<a href="#header"><p class="normal">Back</a><br class=page>
+<p><a name='tenant_role_resource'>&nbsp</a>
+<table width="100%" border="0" cellspacing="0" cellpadding="3">
+<tr>
+	<td class="headtext" width="30%" align="left" valign="top">tenant_role_resource</td>
+	<td>&nbsp</td>
+<tr>
+</table>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="3">
+<tr>
+	<td class="fieldheader" width="100%" align="left" valign="top">Fields</td>
+</tr>
+</table>
+<table width="100%" cellspacing="0" cellapdding="2" border="1">
+<tr>
+	<td align="center" valign="top" class="fieldcolumn">Field</td>
+	<td align="center" valign="top" class="fieldcolumn">Type</td>
+	<td align="center" valign="top" class="fieldcolumn">Collation</td>
+	<td align="center" valign="top" class="fieldcolumn">Null</td>
+	<td align="center" valign="top" class="fieldcolumn">Key</td>
+	<td align="center" valign="top" class="fieldcolumn">Default</td>
+	<td align="center" valign="top" class="fieldcolumn">Extra</td>
+	<td align="center" valign="top" class="fieldcolumn">Privileges</td>
+	<td align="center" valign="top" class="fieldcolumn">Comment</td>
+</tr>
+<tr>
+	<td align="left" valign="top"><p class="normal">id</td>
+	<td align="left" valign="top"><p class="normal">int(11)</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">NO</td>
+	<td align="left" valign="top"><p class="normal">PRI</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">auto_increment</td>
+	<td align="left" valign="top"><p class="normal">select,insert,update,references</td>
+	<td align="left" valign="top"><p class="normal">主键</td>
+</tr>
+<tr>
+	<td align="left" valign="top"><p class="normal">tenant_role_id</td>
+	<td align="left" valign="top"><p class="normal">int(11)</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">YES</td>
+	<td align="left" valign="top"><p class="normal">MUL</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">select,insert,update,references</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+</tr>
+<tr>
+	<td align="left" valign="top"><p class="normal">tenant_resource_id</td>
+	<td align="left" valign="top"><p class="normal">int(11)</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">YES</td>
+	<td align="left" valign="top"><p class="normal">MUL</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">select,insert,update,references</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+</tr>
+<tr>
+	<td align="left" valign="top"><p class="normal">create_user_id</td>
+	<td align="left" valign="top"><p class="normal">int(11)</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">YES</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">select,insert,update,references</td>
+	<td align="left" valign="top"><p class="normal">创建账号ID</td>
+</tr>
+<tr>
+	<td align="left" valign="top"><p class="normal">create_time</td>
+	<td align="left" valign="top"><p class="normal">datetime</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">YES</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">select,insert,update,references</td>
+	<td align="left" valign="top"><p class="normal">创建时间</td>
+</tr>
+<tr>
+	<td align="left" valign="top"><p class="normal">change_last_user_id</td>
+	<td align="left" valign="top"><p class="normal">datetime</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">YES</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">select,insert,update,references</td>
+	<td align="left" valign="top"><p class="normal">最后修改账号ID</td>
+</tr>
+<tr>
+	<td align="left" valign="top"><p class="normal">change_last_time</td>
+	<td align="left" valign="top"><p class="normal">datetime</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">YES</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">select,insert,update,references</td>
+	<td align="left" valign="top"><p class="normal">最后修改时间</td>
+</tr>
+</table>
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="3">
+<tr>
+	<td class="fieldheader" width="100%" align="left" valign="top">Indexes</td>
+</tr>
+</table>
+<table width="100%" cellspacing="0" cellapdding="2" border="1">
+<tr>
+	<td align="left" valign="top" class="fieldcolumn">Table</td>
+	<td align="left" valign="top" class="fieldcolumn">Non<br>unique</td>
+	<td align="left" valign="top" class="fieldcolumn">Key<br>name</td>
+	<td align="left" valign="top" class="fieldcolumn">Seq<br>in<br>index</td>
+	<td align="left" valign="top" class="fieldcolumn">Column<br>name</td>
+	<td align="left" valign="top" class="fieldcolumn">Collation</td>
+	<td align="left" valign="top" class="fieldcolumn">Cardinality</td>
+	<td align="left" valign="top" class="fieldcolumn">Sub<br>part</td>
+	<td align="left" valign="top" class="fieldcolumn">Packed</td>
+	<td align="left" valign="top" class="fieldcolumn">Null</td>
+	<td align="left" valign="top" class="fieldcolumn">Index<br>type</td>
+	<td align="left" valign="top" class="fieldcolumn">Comment</td>
+	<td align="left" valign="top" class="fieldcolumn">Index<br>comment</td>
+</tr>
+<tr>
+	<td align="left" valign="top"><p class="normal">tenant_role_resource</td>
+	<td align="left" valign="top"><p class="normal">0</td>
+	<td align="left" valign="top"><p class="normal">PRIMARY</td>
+	<td align="left" valign="top"><p class="normal">1</td>
+	<td align="left" valign="top"><p class="normal">id</td>
+	<td align="left" valign="top"><p class="normal">A</td>
+	<td align="left" valign="top"><p class="normal">0</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">BTREE</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+</tr>
+<tr>
+	<td align="left" valign="top"><p class="normal">tenant_role_resource</td>
+	<td align="left" valign="top"><p class="normal">1</td>
+	<td align="left" valign="top"><p class="normal">pk_trr_tenant_role_id</td>
+	<td align="left" valign="top"><p class="normal">1</td>
+	<td align="left" valign="top"><p class="normal">tenant_role_id</td>
+	<td align="left" valign="top"><p class="normal">A</td>
+	<td align="left" valign="top"><p class="normal">0</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">YES</td>
+	<td align="left" valign="top"><p class="normal">BTREE</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+</tr>
+<tr>
+	<td align="left" valign="top"><p class="normal">tenant_role_resource</td>
+	<td align="left" valign="top"><p class="normal">1</td>
+	<td align="left" valign="top"><p class="normal">pk_trr_resource_id</td>
+	<td align="left" valign="top"><p class="normal">1</td>
+	<td align="left" valign="top"><p class="normal">tenant_resource_id</td>
+	<td align="left" valign="top"><p class="normal">A</td>
+	<td align="left" valign="top"><p class="normal">0</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">YES</td>
+	<td align="left" valign="top"><p class="normal">BTREE</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+</tr>
+</table>
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="3">
+<tr>
+	<td class="fieldheader" width="100%" align="left" valign="top">Foreign Key Relationships</td>
+</tr>
+</table>
+<table width="100%" cellspacing="0" cellapdding="2" border="1">
+<tr>
+	<td align="left" valign="top" class="fieldcolumn">FK Id</td>
+	<td align="left" valign="top" class="fieldcolumn">Reference Table</td>
+	<td align="left" valign="top" class="fieldcolumn">Source Column</td>
+	<td align="left" valign="top" class="fieldcolumn">Target Column</td>
+	<td align="left" valign="top" class="fieldcolumn">Extra Info</td>
+</tr>
+<tr>
+	<td align="left" valign="top"><p class="normal">pk_trr_resource_id</td>
+	<td align="left" valign="top"><p class="normal">resource</td>
+	<td align="left" valign="top"><p class="normal">`tenant_resource_id`</td>
+	<td align="left" valign="top"><p class="normal">`id`</td>
+	<td align="left" valign="top"><p class="normal"> ON DELETE NO ACTION ON UPDATE NO ACTION,</td>
+<tr>
+<tr>
+	<td align="left" valign="top"><p class="normal">pk_trr_tenant_role_id</td>
+	<td align="left" valign="top"><p class="normal">tenant_role</td>
+	<td align="left" valign="top"><p class="normal">`tenant_role_id`</td>
+	<td align="left" valign="top"><p class="normal">`id`</td>
+	<td align="left" valign="top"><p class="normal"> ON DELETE NO ACTION ON UPDATE NO ACTION</td>
+<tr>
+</table>
+
+
+<a href="#header"><p class="normal">Back</a><br class=page>
+<p><a name='tenant_user'>&nbsp</a>
+<table width="100%" border="0" cellspacing="0" cellpadding="3">
+<tr>
+	<td class="headtext" width="30%" align="left" valign="top">tenant_user</td>
+	<td>&nbsp</td>
+<tr>
+</table>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="3">
+<tr>
+	<td class="fieldheader" width="100%" align="left" valign="top">Fields</td>
+</tr>
+</table>
+<table width="100%" cellspacing="0" cellapdding="2" border="1">
+<tr>
+	<td align="center" valign="top" class="fieldcolumn">Field</td>
+	<td align="center" valign="top" class="fieldcolumn">Type</td>
+	<td align="center" valign="top" class="fieldcolumn">Collation</td>
+	<td align="center" valign="top" class="fieldcolumn">Null</td>
+	<td align="center" valign="top" class="fieldcolumn">Key</td>
+	<td align="center" valign="top" class="fieldcolumn">Default</td>
+	<td align="center" valign="top" class="fieldcolumn">Extra</td>
+	<td align="center" valign="top" class="fieldcolumn">Privileges</td>
+	<td align="center" valign="top" class="fieldcolumn">Comment</td>
+</tr>
+<tr>
+	<td align="left" valign="top"><p class="normal">id</td>
+	<td align="left" valign="top"><p class="normal">int(11)</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">NO</td>
+	<td align="left" valign="top"><p class="normal">PRI</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">auto_increment</td>
+	<td align="left" valign="top"><p class="normal">select,insert,update,references</td>
+	<td align="left" valign="top"><p class="normal">租户下用用户ID</td>
+</tr>
+<tr>
+	<td align="left" valign="top"><p class="normal">tenant_id</td>
+	<td align="left" valign="top"><p class="normal">int(11)</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">YES</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">select,insert,update,references</td>
+	<td align="left" valign="top"><p class="normal">租户</td>
+</tr>
+<tr>
+	<td align="left" valign="top"><p class="normal">user_phone</td>
+	<td align="left" valign="top"><p class="normal">varchar(20)</td>
+	<td align="left" valign="top"><p class="normal">utf8_general_ci</td>
+	<td align="left" valign="top"><p class="normal">YES</td>
+	<td align="left" valign="top"><p class="normal">UNI</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">select,insert,update,references</td>
+	<td align="left" valign="top"><p class="normal">租户下用用户手机号，登录</td>
+</tr>
+<tr>
+	<td align="left" valign="top"><p class="normal">user_authentication</td>
+	<td align="left" valign="top"><p class="normal">varchar(50)</td>
+	<td align="left" valign="top"><p class="normal">utf8_general_ci</td>
+	<td align="left" valign="top"><p class="normal">YES</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">select,insert,update,references</td>
+	<td align="left" valign="top"><p class="normal">租户下用用户密码</td>
+</tr>
+<tr>
+	<td align="left" valign="top"><p class="normal">user_authentication _salt</td>
+	<td align="left" valign="top"><p class="normal">varchar(32)</td>
+	<td align="left" valign="top"><p class="normal">utf8_general_ci</td>
+	<td align="left" valign="top"><p class="normal">YES</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">select,insert,update,references</td>
+	<td align="left" valign="top"><p class="normal">租户下用用户密码盐</td>
+</tr>
+<tr>
+	<td align="left" valign="top"><p class="normal">user_name</td>
+	<td align="left" valign="top"><p class="normal">varchar(20)</td>
+	<td align="left" valign="top"><p class="normal">utf8_general_ci</td>
+	<td align="left" valign="top"><p class="normal">YES</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">select,insert,update,references</td>
+	<td align="left" valign="top"><p class="normal">租户下用用户名字</td>
+</tr>
+<tr>
+	<td align="left" valign="top"><p class="normal">avatar</td>
+	<td align="left" valign="top"><p class="normal">varchar(100)</td>
+	<td align="left" valign="top"><p class="normal">utf8_general_ci</td>
+	<td align="left" valign="top"><p class="normal">YES</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">select,insert,update,references</td>
+	<td align="left" valign="top"><p class="normal">租户下用用户头像</td>
+</tr>
+<tr>
+	<td align="left" valign="top"><p class="normal">is_system_user</td>
+	<td align="left" valign="top"><p class="normal">tinyint(1)</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">YES</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">0</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">select,insert,update,references</td>
+	<td align="left" valign="top"><p class="normal">是否系统级账号，1:是;2:普通</td>
+</tr>
+<tr>
+	<td align="left" valign="top"><p class="normal">status</td>
+	<td align="left" valign="top"><p class="normal">tinyint(1)</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">YES</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">1</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">select,insert,update,references</td>
+	<td align="left" valign="top"><p class="normal">租户下用用户有效状态，1:有效;0:禁用</td>
+</tr>
+<tr>
+	<td align="left" valign="top"><p class="normal">last_login_time</td>
+	<td align="left" valign="top"><p class="normal">datetime</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">YES</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">select,insert,update,references</td>
+	<td align="left" valign="top"><p class="normal">最后登录时间</td>
+</tr>
+<tr>
+	<td align="left" valign="top"><p class="normal">create_user_id</td>
+	<td align="left" valign="top"><p class="normal">int(11)</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">YES</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">select,insert,update,references</td>
+	<td align="left" valign="top"><p class="normal">创建账号ID</td>
+</tr>
+<tr>
+	<td align="left" valign="top"><p class="normal">create_time</td>
+	<td align="left" valign="top"><p class="normal">datetime</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">YES</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">select,insert,update,references</td>
+	<td align="left" valign="top"><p class="normal">创建时间</td>
+</tr>
+<tr>
+	<td align="left" valign="top"><p class="normal">change_last_user_id</td>
+	<td align="left" valign="top"><p class="normal">datetime</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">YES</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">select,insert,update,references</td>
+	<td align="left" valign="top"><p class="normal">最后修改账号ID</td>
+</tr>
+<tr>
+	<td align="left" valign="top"><p class="normal">change_last_time</td>
+	<td align="left" valign="top"><p class="normal">datetime</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">YES</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">select,insert,update,references</td>
+	<td align="left" valign="top"><p class="normal">最后修改时间</td>
+</tr>
+</table>
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="3">
+<tr>
+	<td class="fieldheader" width="100%" align="left" valign="top">Indexes</td>
+</tr>
+</table>
+<table width="100%" cellspacing="0" cellapdding="2" border="1">
+<tr>
+	<td align="left" valign="top" class="fieldcolumn">Table</td>
+	<td align="left" valign="top" class="fieldcolumn">Non<br>unique</td>
+	<td align="left" valign="top" class="fieldcolumn">Key<br>name</td>
+	<td align="left" valign="top" class="fieldcolumn">Seq<br>in<br>index</td>
+	<td align="left" valign="top" class="fieldcolumn">Column<br>name</td>
+	<td align="left" valign="top" class="fieldcolumn">Collation</td>
+	<td align="left" valign="top" class="fieldcolumn">Cardinality</td>
+	<td align="left" valign="top" class="fieldcolumn">Sub<br>part</td>
+	<td align="left" valign="top" class="fieldcolumn">Packed</td>
+	<td align="left" valign="top" class="fieldcolumn">Null</td>
+	<td align="left" valign="top" class="fieldcolumn">Index<br>type</td>
+	<td align="left" valign="top" class="fieldcolumn">Comment</td>
+	<td align="left" valign="top" class="fieldcolumn">Index<br>comment</td>
+</tr>
+<tr>
+	<td align="left" valign="top"><p class="normal">tenant_user</td>
+	<td align="left" valign="top"><p class="normal">0</td>
+	<td align="left" valign="top"><p class="normal">PRIMARY</td>
+	<td align="left" valign="top"><p class="normal">1</td>
+	<td align="left" valign="top"><p class="normal">id</td>
+	<td align="left" valign="top"><p class="normal">A</td>
+	<td align="left" valign="top"><p class="normal">0</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">BTREE</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+</tr>
+<tr>
+	<td align="left" valign="top"><p class="normal">tenant_user</td>
+	<td align="left" valign="top"><p class="normal">0</td>
+	<td align="left" valign="top"><p class="normal">idx_admin_user_phone</td>
+	<td align="left" valign="top"><p class="normal">1</td>
+	<td align="left" valign="top"><p class="normal">user_phone</td>
+	<td align="left" valign="top"><p class="normal">A</td>
+	<td align="left" valign="top"><p class="normal">0</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">YES</td>
+	<td align="left" valign="top"><p class="normal">BTREE</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+</tr>
+</table>
+
+
+<a href="#header"><p class="normal">Back</a><br class=page>
+<p><a name='tenant_user_role'>&nbsp</a>
+<table width="100%" border="0" cellspacing="0" cellpadding="3">
+<tr>
+	<td class="headtext" width="30%" align="left" valign="top">tenant_user_role</td>
+	<td>&nbsp</td>
+<tr>
+</table>
+
+<table width="100%" border="0" cellspacing="0" cellpadding="3">
+<tr>
+	<td class="fieldheader" width="100%" align="left" valign="top">Fields</td>
+</tr>
+</table>
+<table width="100%" cellspacing="0" cellapdding="2" border="1">
+<tr>
+	<td align="center" valign="top" class="fieldcolumn">Field</td>
+	<td align="center" valign="top" class="fieldcolumn">Type</td>
+	<td align="center" valign="top" class="fieldcolumn">Collation</td>
+	<td align="center" valign="top" class="fieldcolumn">Null</td>
+	<td align="center" valign="top" class="fieldcolumn">Key</td>
+	<td align="center" valign="top" class="fieldcolumn">Default</td>
+	<td align="center" valign="top" class="fieldcolumn">Extra</td>
+	<td align="center" valign="top" class="fieldcolumn">Privileges</td>
+	<td align="center" valign="top" class="fieldcolumn">Comment</td>
+</tr>
+<tr>
+	<td align="left" valign="top"><p class="normal">id</td>
+	<td align="left" valign="top"><p class="normal">int(11) unsigned</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">NO</td>
+	<td align="left" valign="top"><p class="normal">PRI</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">auto_increment</td>
+	<td align="left" valign="top"><p class="normal">select,insert,update,references</td>
+	<td align="left" valign="top"><p class="normal">主键</td>
+</tr>
+<tr>
+	<td align="left" valign="top"><p class="normal">tenant_id</td>
+	<td align="left" valign="top"><p class="normal">int(11)</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">YES</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">select,insert,update,references</td>
+	<td align="left" valign="top"><p class="normal">租户ID</td>
+</tr>
+<tr>
+	<td align="left" valign="top"><p class="normal">tenant_user_id</td>
+	<td align="left" valign="top"><p class="normal">int(11)</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">YES</td>
+	<td align="left" valign="top"><p class="normal">MUL</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">select,insert,update,references</td>
+	<td align="left" valign="top"><p class="normal">租户下用户ID</td>
+</tr>
+<tr>
+	<td align="left" valign="top"><p class="normal">tenant_role_id</td>
+	<td align="left" valign="top"><p class="normal">int(11)</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">YES</td>
+	<td align="left" valign="top"><p class="normal">MUL</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">select,insert,update,references</td>
+	<td align="left" valign="top"><p class="normal">租户下角色表ID</td>
+</tr>
+<tr>
+	<td align="left" valign="top"><p class="normal">create_user_id</td>
+	<td align="left" valign="top"><p class="normal">int(11)</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">YES</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">select,insert,update,references</td>
+	<td align="left" valign="top"><p class="normal">创建账号ID</td>
+</tr>
+<tr>
+	<td align="left" valign="top"><p class="normal">create_time</td>
+	<td align="left" valign="top"><p class="normal">datetime</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">YES</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">select,insert,update,references</td>
+	<td align="left" valign="top"><p class="normal">创建时间</td>
+</tr>
+<tr>
+	<td align="left" valign="top"><p class="normal">change_last_user_id</td>
+	<td align="left" valign="top"><p class="normal">datetime</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">YES</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">select,insert,update,references</td>
+	<td align="left" valign="top"><p class="normal">最后修改账号ID</td>
+</tr>
+<tr>
+	<td align="left" valign="top"><p class="normal">change_last_time</td>
+	<td align="left" valign="top"><p class="normal">datetime</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">YES</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">select,insert,update,references</td>
+	<td align="left" valign="top"><p class="normal">最后修改时间</td>
+</tr>
+</table>
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="3">
+<tr>
+	<td class="fieldheader" width="100%" align="left" valign="top">Indexes</td>
+</tr>
+</table>
+<table width="100%" cellspacing="0" cellapdding="2" border="1">
+<tr>
+	<td align="left" valign="top" class="fieldcolumn">Table</td>
+	<td align="left" valign="top" class="fieldcolumn">Non<br>unique</td>
+	<td align="left" valign="top" class="fieldcolumn">Key<br>name</td>
+	<td align="left" valign="top" class="fieldcolumn">Seq<br>in<br>index</td>
+	<td align="left" valign="top" class="fieldcolumn">Column<br>name</td>
+	<td align="left" valign="top" class="fieldcolumn">Collation</td>
+	<td align="left" valign="top" class="fieldcolumn">Cardinality</td>
+	<td align="left" valign="top" class="fieldcolumn">Sub<br>part</td>
+	<td align="left" valign="top" class="fieldcolumn">Packed</td>
+	<td align="left" valign="top" class="fieldcolumn">Null</td>
+	<td align="left" valign="top" class="fieldcolumn">Index<br>type</td>
+	<td align="left" valign="top" class="fieldcolumn">Comment</td>
+	<td align="left" valign="top" class="fieldcolumn">Index<br>comment</td>
+</tr>
+<tr>
+	<td align="left" valign="top"><p class="normal">tenant_user_role</td>
+	<td align="left" valign="top"><p class="normal">0</td>
+	<td align="left" valign="top"><p class="normal">PRIMARY</td>
+	<td align="left" valign="top"><p class="normal">1</td>
+	<td align="left" valign="top"><p class="normal">id</td>
+	<td align="left" valign="top"><p class="normal">A</td>
+	<td align="left" valign="top"><p class="normal">0</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">BTREE</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+</tr>
+<tr>
+	<td align="left" valign="top"><p class="normal">tenant_user_role</td>
+	<td align="left" valign="top"><p class="normal">1</td>
+	<td align="left" valign="top"><p class="normal">pk_tur_tenant_role_id</td>
+	<td align="left" valign="top"><p class="normal">1</td>
+	<td align="left" valign="top"><p class="normal">tenant_role_id</td>
+	<td align="left" valign="top"><p class="normal">A</td>
+	<td align="left" valign="top"><p class="normal">0</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">YES</td>
+	<td align="left" valign="top"><p class="normal">BTREE</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+</tr>
+<tr>
+	<td align="left" valign="top"><p class="normal">tenant_user_role</td>
+	<td align="left" valign="top"><p class="normal">1</td>
+	<td align="left" valign="top"><p class="normal">pk_tur_tenant_user_id</td>
+	<td align="left" valign="top"><p class="normal">1</td>
+	<td align="left" valign="top"><p class="normal">tenant_user_id</td>
+	<td align="left" valign="top"><p class="normal">A</td>
+	<td align="left" valign="top"><p class="normal">0</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">(NULL)</td>
+	<td align="left" valign="top"><p class="normal">YES</td>
+	<td align="left" valign="top"><p class="normal">BTREE</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+	<td align="left" valign="top"><p class="normal">&nbsp;</td>
+</tr>
+</table>
+
+
+<table width="100%" border="0" cellspacing="0" cellpadding="3">
+<tr>
+	<td class="fieldheader" width="100%" align="left" valign="top">Foreign Key Relationships</td>
+</tr>
+</table>
+<table width="100%" cellspacing="0" cellapdding="2" border="1">
+<tr>
+	<td align="left" valign="top" class="fieldcolumn">FK Id</td>
+	<td align="left" valign="top" class="fieldcolumn">Reference Table</td>
+	<td align="left" valign="top" class="fieldcolumn">Source Column</td>
+	<td align="left" valign="top" class="fieldcolumn">Target Column</td>
+	<td align="left" valign="top" class="fieldcolumn">Extra Info</td>
+</tr>
+<tr>
+	<td align="left" valign="top"><p class="normal">pk_tur_tenant_role_id</td>
+	<td align="left" valign="top"><p class="normal">tenant_role</td>
+	<td align="left" valign="top"><p class="normal">`tenant_role_id`</td>
+	<td align="left" valign="top"><p class="normal">`id`</td>
+	<td align="left" valign="top"><p class="normal"> ON DELETE NO ACTION ON UPDATE NO ACTION,</td>
+<tr>
+<tr>
+	<td align="left" valign="top"><p class="normal">pk_tur_tenant_user_id</td>
+	<td align="left" valign="top"><p class="normal">tenant_user</td>
+	<td align="left" valign="top"><p class="normal">`tenant_user_id`</td>
+	<td align="left" valign="top"><p class="normal">`id`</td>
+	<td align="left" valign="top"><p class="normal"> ON DELETE NO ACTION ON UPDATE NO ACTION</td>
+<tr>
+</table>
+
+
+<a href="#header"><p class="normal">Back</a>
+<h1 width="100%"></body>
+</html>
